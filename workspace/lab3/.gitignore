@@ -1,0 +1,7 @@
+**/output/
+timeloop-model.*
+timeloop-mapper.*
+ART*
+ERT*
+flattened_architecture.yaml
+.bash_history
