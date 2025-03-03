@@ -1,0 +1,480 @@
+'1.0':
+  What is your email address?:
+    answer: saniya@mit.edu
+    assumptions: []
+  What is your kerberos?:
+    answer: saniya
+    assumptions: []
+  What is your name?:
+    answer: Saniya Karwa
+    assumptions: []
+'1.1':
+  Which datatype maximizes data reuse?:
+    answer: filter weights
+    assumptions:
+    - Filter weights are reused across multiple input activations while computing
+      output activations.
+1.2.1:
+  How many bits used to represent a value?:
+    answer: 16
+    assumptions: []
+  How many bytes is the local scratchpad?:
+    answer: 256
+    assumptions: []
+  What is the number of memory levels (including DRAM and registers):
+    answer: 5
+    assumptions: []
+1.2.2:
+  'True/False: These components are made of multiple subcomponents. (False if they are made of a single subcomponent)':
+    answer: false
+    assumptions: []
+1.2.3:
+  ? 'True/False: According to description of the `mac_compute` compound component,
+    is our architecture capable of performing floating point computations?'
+  : answer: false
+    assumptions: []
+'1.3':
+  What is the DRAM write energy?:
+    answer: 512
+    assumptions: []
+  What is the mac compute energy?:
+    answer: 3.275
+    assumptions: []
+  What is the scratchpad leak energy?:
+    answer: 0.0007728
+    assumptions: []
+'1.4':
+  What are the [M0, N0, C0] factors?:
+    answer:
+    - 2
+    - 50
+    - 4
+    assumptions: []
+  What are the [S, R, P, Q] factors?:
+    answer:
+    - 1
+    - 1
+    - 1
+    - 1
+    assumptions: []
+'1.5':
+  What are the output P and Q? P and Q are the same, so just give one value.:
+    answer: 28
+    assumptions: []
+  What are the weight R and S? R and S are the same, so just give one value.:
+    answer: 5
+    assumptions: []
+  What is the batch size?:
+    answer: 50
+    assumptions: []
+  What is the number of cycles?:
+    answer: 31360000
+    assumptions: []
+  What is the number of input channels?:
+    answer: 4
+    assumptions: []
+  What is the number of output channels?:
+    answer: 8
+    assumptions: []
+  What is the pJ/compute:
+    answer: 387.0258
+    assumptions: []
+  What is the total DRAM energy (pJ overall, NOT PER MAC)?:
+    answer: 5120000.0
+    assumptions: []
+  What is the total MAC energy (pJ overall, NOT PER MAC)?:
+    answer: 102704000.0
+    assumptions: []
+  What is the total scratchpad energy (pJ overall, NOT PER MAC)?:
+    answer: 66732.8
+    assumptions: []
+'1.6':
+  What is the leak energy of the scratchpad (pJ)?:
+    answer: 0.00113217
+    assumptions: []
+  What is the read energy of the scratchpad (pJ)?:
+    answer: 0.866972
+    assumptions: []
+  What is the write energy of the scratchpad (pJ)?:
+    answer: 1.66832
+    assumptions: []
+  What parameters did you put for (name, class, technology, datawidth, write_action, read_action, leak_action)?:
+    answer:
+    - address_generator
+    - intadder
+    - '"45nm"'
+    - ceil(log2(24))
+    - add
+    - add
+    - leak
+    assumptions: []
+'1.7':
+  Setting for DRAM_factor_C in the os_map_config:
+    answer: 4
+    assumptions: []
+  Setting for DRAM_factor_M in the os_map_config:
+    answer: 4
+    assumptions: []
+  Setting for DRAM_factor_N in the os_map_config:
+    answer: 50
+    assumptions: []
+  Setting for DRAM_factor_P in the os_map_config:
+    answer: 28
+    assumptions: []
+  Setting for DRAM_factor_Q in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for DRAM_factor_R in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for DRAM_factor_S in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for DRAM_permutation in the os_map_config:
+    answer:
+    - S
+    - R
+    - Q
+    - P
+    - C
+    - M
+    - N
+    assumptions: []
+  Setting for scratchpad_bypass_list in the os_map_config:
+    answer:
+    - Weights
+    - Inputs
+    assumptions: []
+  Setting for scratchpad_factor_C in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for scratchpad_factor_M in the os_map_config:
+    answer: 2
+    assumptions: []
+  Setting for scratchpad_factor_N in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for scratchpad_factor_P in the os_map_config:
+    answer: 1
+    assumptions: []
+  Setting for scratchpad_factor_Q in the os_map_config:
+    answer: 28
+    assumptions: []
+  Setting for scratchpad_factor_R in the os_map_config:
+    answer: 5
+    assumptions: []
+  Setting for scratchpad_factor_S in the os_map_config:
+    answer: 5
+    assumptions: []
+  Setting for scratchpad_keep_list in the os_map_config:
+    answer:
+    - Outputs
+    assumptions: []
+  Setting for scratchpad_permutation in the os_map_config:
+    answer:
+    - R
+    - S
+    - C
+    - N
+    - M
+    - Q
+    - P
+    assumptions: []
+1.7.2:
+  DRAM energy (pJ overall, NOT PER MAC):
+    answer: 8309145600.0
+    assumptions: []
+  MAC energy (pJ overall, NOT PER MAC):
+    answer: 102704000.0
+    assumptions: []
+  Number of cycles:
+    answer: 31360000
+    assumptions: []
+  Scratchpad energy (pJ overall, NOT PER MAC):
+    answer: 2615925.76
+    assumptions: []
+  Total pJ/compute:
+    answer: 269.18943
+    assumptions: []
+'1.8':
+  ? How many inputs, outputs, and weights (including duplicates) are transferred from
+    DRAM to the scratchpad? Answer in the order of inputs, outputs, and weights.
+  : answer:
+    - 128
+    - 32
+    - 64
+    assumptions: []
+  ? How many inputs, outputs, and weights (including duplicates) are transferred from
+    the scratchpad to the registers? Answer in the order of inputs, outputs, and weights.
+  : answer:
+    - 64
+    - 16
+    - 32
+    assumptions: []
+  ? If we choose to move the (C) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
+    transfers as unique transfers (i.e., read a particular input twice --> two inputs
+    transferred).
+  : answer:
+    - 64
+    - 32
+    - 32
+    assumptions: []
+  ? If we choose to move the (C) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from the scratchpad to the registers? Count
+    repeated transfers as unique transfers (i.e., read a particular input twice -->
+    two inputs transferred).
+  : answer:
+    - 64
+    - 16
+    - 32
+    assumptions: []
+  ? If we choose to move the (M) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
+    transfers as unique transfers (i.e., read a particular input twice --> two inputs
+    transferred).
+  : answer:
+    - 128
+    - 32
+    - 32
+    assumptions: []
+  ? If we choose to move the (M) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from the scratchpad to the registers? Count
+    repeated transfers as unique transfers (i.e., read a particular input twice -->
+    two inputs transferred).
+  : answer:
+    - 64
+    - 16
+    - 32
+    assumptions: []
+  ? If we choose to move the (N) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
+    transfers as unique transfers (i.e., read a particular input twice --> two inputs
+    transferred).
+  : answer:
+    - 64
+    - 16
+    - 64
+    assumptions: []
+  ? If we choose to move the (N) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from the scratchpad to the registers? Count
+    repeated transfers as unique transfers (i.e., read a particular input twice -->
+    two inputs transferred).
+  : answer:
+    - 64
+    - 16
+    - 32
+    assumptions: []
+  ? Looking at the einsum, what has to be true about a loop for it to be helpful in
+    reducing DRAM-scratchpad transfers for a particular datatype by moving it from
+    the DRAM to the scratchpad loop nest? Please answer using the rank of the loop
+    (*i.e.* P,Q,R,S,C,N,M) and its role in the Einsum.
+  : answer: A loop must index a data type that is frequently accessed across multiple
+      iterations of upper-level loops.
+    assumptions: []
+  'To reduce **DRAM <==> Scratchpad** input movement, we could move loops:':
+    answer:
+    - (P)
+    - (Q)
+    - (C)
+    - (N)
+    - (S)
+    assumptions: []
+  'To reduce **DRAM <==> Scratchpad** output movement, we could move loops:':
+    answer:
+    - (M)
+    - (N)
+    - (C)
+    assumptions: []
+  'To reduce **DRAM <==> Scratchpad** weight movement, we could move loops:':
+    answer:
+    - (R)
+    - (S)
+    - (M)
+    assumptions: []
+  Were we able to affect data movement between the scratchpad and registers? Why or why not?:
+    answer: No, because MAC operations still need every input, weight, and output
+      for computation.
+    assumptions: []
+'2.1':
+  ? What variable names change the number of PEs in the X and Y dimensions? Please
+    give the name of the double-curly-brace-enclosed variables. Case sensitive.
+  : answer:
+    - pe_meshX
+    - pe_meshY
+    assumptions: []
+'2.2':
+  Which rank (e.g., C, M, or P) is mapped to the X dimension of the PE array? Case sensitive.:
+    answer: C
+    assumptions: []
+  Which rank (e.g., C, M, or P) is mapped to the Y dimension of the PE array? Case sensitive.:
+    answer: M
+    assumptions: []
+'2.3':
+  ? Assuming a larger factor of the spatial loop is possible given the PE array shape,
+    increasing the factor will not increase PE utilization if the workload were _____-bound.
+  : answer: memory bandwidth
+    assumptions: []
+  What is the PE utilization (number of utilized PEs divided by total number of PEs)?.:
+    answer: 0.25
+    assumptions: []
+  What is the maximum factor of the spatially mapped C rank based on the PE array shape?:
+    answer: 1
+    assumptions: []
+'2.4':
+  How many input reads does each utilized PE fetch from the global_buffer now?:
+    answer: 7840000
+    assumptions: []
+  How many input reads does each utilized PE fetch from the global_buffer?:
+    answer: 31360000
+    assumptions: []
+  How many output reads does each utilized PE fetch from the global_buffer now?:
+    answer: 31046400
+    assumptions: []
+  How many output reads does each utilized PE fetch from the global_buffer?:
+    answer: 31046400
+    assumptions: []
+  How many weight reads does each utilized PE fetch from the global_buffer now?:
+    answer: 40000
+    assumptions: []
+  How many weight reads does each utilized PE fetch from the global_buffer?:
+    answer: 40000
+    assumptions: []
+'3.1':
+  'Minimum energy achieved: 262.89 uJ. Passing?':
+    answer: true
+    assumptions: []
+  'Minimum energy achieved: 305.15 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Minimum energy achieved: 399.0 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Minimum energy achieved: 435.87 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Minimum energy achieved: 563.25 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Minimum energy achieved: 657.11 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Optimized 1x16 --- Latency: 31360000 cycles; Energy: 657.11 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Optimized 1x16 --- Latency: 3920000 cycles; Energy: 399.0 uJ. Passing?':
+    answer: true
+    assumptions: []
+  'Optimized 1x16 --- Latency: 7840000 cycles; Energy: 408.95 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Optimized 1x16 --- Latency: 7840000 cycles; Energy: 435.87 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Optimized 2x8 --- Latency: 1960000 cycles; Energy: 305.15 uJ. Passing?':
+    answer: true
+    assumptions: []
+  'Optimized 2x8 --- Latency: 31360000 cycles; Energy: 657.11 uJ. Passing?':
+    answer: false
+    assumptions: []
+  'Optimized 4x4 --- Latency: 1960000 cycles; Energy: 262.89 uJ. Passing?':
+    answer: true
+    assumptions: []
+  'Optimized 4x4 --- Latency: 31360000 cycles; Energy: 657.11 uJ. Passing?':
+    answer: false
+    assumptions: []
+'3.2':
+  (True/False) There is a PE array shape that achieves fewer cycles and energy compared to other array shapes for conv1.:
+    answer: false
+    assumptions: []
+  1x16 cycles and energy (uJ) for conv1:
+    answer:
+    - 980000
+    - 68.54
+    assumptions: []
+  1x16 cycles and energy (uJ) for conv2:
+    answer:
+    - 3920000
+    - 393.85
+    assumptions: []
+  1x16 cycles and energy (uJ) for fc1:
+    answer:
+    - 313600
+    - 69.39
+    assumptions: []
+  2x8 cycles and energy (uJ) for conv1:
+    answer:
+    - 980000
+    - 68.54
+    assumptions: []
+  2x8 cycles and energy (uJ) for conv2:
+    answer:
+    - 1960000
+    - 300.0
+    assumptions: []
+  2x8 cycles and energy (uJ) for fc1:
+    answer:
+    - 313600
+    - 55.62
+    assumptions: []
+  4x4 cycles and energy (uJ) for conv1:
+    answer:
+    - 980000
+    - 68.54
+    assumptions: []
+  4x4 cycles and energy (uJ) for conv2:
+    answer:
+    - 1960000
+    - 262.76
+    assumptions: []
+  4x4 cycles and energy (uJ) for fc1:
+    answer:
+    - 313600
+    - 49.7
+    assumptions: []
+  Best [architecture name, cycles, total energy (uJ)] for conv2. Please answer as a list, e.g., ["2x8", 3920000, 68.54].:
+    answer:
+    - 4x4
+    - 1960000
+    - 262.76
+    assumptions: []
+  ? Best [architecture name, cycles, total energy (uJ)] for fc1. Please answer as
+    a list with 3 elements. Please answer as a list, e.g., ["2x8", 3920000, 68.54].
+  : answer:
+    - 4x4
+    - 313600
+    - 49.7
+    assumptions: []
+  ? Given the array shapes (1x16, 2x8, and 4x4) and the workload shape of conv1, what
+    is the maximum PE array utilization for each array shape? Answer as a list, e.g.,
+    [0.25, 0.5, 1].
+  : answer:
+    - 0.25
+    - 0.25
+    - 0.25
+    assumptions: []
+  ? List two hardware levels for which constraints have been relaxed. Answer as a
+    Python list of strings (e.g., ["PE", "DRAM"]).
+  : answer:
+    - DRAM
+    - scratchpad
+    assumptions: []
+'3.3':
+  What are the [cycles, total energy (uJ)] for this architecture and conv1?:
+    answer:
+    - 980000
+    - 68.54
+    assumptions: []
+  What are the [cycles, total energy (uJ)] for this architecture and conv2?:
+    answer:
+    - 1960000
+    - 262.76
+    assumptions: []
+  What are the [cycles, total energy (uJ)] for this architecture and fc1?:
+    answer:
+    - 313600
+    - 49.7
+    assumptions: []
+  What is the best overall architecture for the three workloads?:
+    answer: 4x4
+    assumptions: []
