@@ -10,10 +10,9 @@
     assumptions: []
 '1.1':
   Which datatype maximizes data reuse?:
-    answer: filter weights
+    answer: output activations
     assumptions:
-    - Filter weights are reused across multiple input activations while computing
-      output activations.
+    - Outermost loops are N and M which iterate over the output
 1.2.1:
   How many bits used to represent a value?:
     answer: 16
@@ -22,7 +21,7 @@
     answer: 256
     assumptions: []
   What is the number of memory levels (including DRAM and registers):
-    answer: 5
+    answer: 3
     assumptions: []
 1.2.2:
   'True/False: These components are made of multiple subcomponents. (False if they are made of a single subcomponent)':
@@ -52,10 +51,10 @@
     assumptions: []
   What are the [S, R, P, Q] factors?:
     answer:
-    - 1
-    - 1
-    - 1
-    - 1
+    - nan
+    - nan
+    - nan
+    - nan
     assumptions: []
 '1.5':
   What are the output P and Q? P and Q are the same, so just give one value.:
