@@ -200,42 +200,42 @@
     DRAM to the scratchpad? Answer in the order of inputs, outputs, and weights.
   : answer:
     - 128
-    - 32
-    - 64
+    - 128
+    - 128
     assumptions: []
   ? How many inputs, outputs, and weights (including duplicates) are transferred from
     the scratchpad to the registers? Answer in the order of inputs, outputs, and weights.
   : answer:
-    - 64
-    - 16
-    - 32
+    - 128
+    - 128
+    - 128
     assumptions: []
   ? If we choose to move the (C) loop to beneath the scratchpad, how many inputs,
-    outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
-    transfers as unique transfers (i.e., read a particular input twice --> two inputs
-    transferred).
-  : answer:
-    - 64
-    - 32
-    - 32
-    assumptions: []
-  ? If we choose to move the (C) loop to beneath the scratchpad, how many inputs,
-    outputs, and weights are transferred from the scratchpad to the registers? Count
-    repeated transfers as unique transfers (i.e., read a particular input twice -->
-    two inputs transferred).
-  : answer:
-    - 64
-    - 16
-    - 32
-    assumptions: []
-  ? If we choose to move the (M) loop to beneath the scratchpad, how many inputs,
     outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
     transfers as unique transfers (i.e., read a particular input twice --> two inputs
     transferred).
   : answer:
     - 128
-    - 32
-    - 32
+    - 64
+    - 128
+    assumptions: []
+  ? If we choose to move the (C) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from the scratchpad to the registers? Count
+    repeated transfers as unique transfers (i.e., read a particular input twice -->
+    two inputs transferred).
+  : answer:
+    - 128
+    - 64
+    - 128
+    assumptions: []
+  ? If we choose to move the (M) loop to beneath the scratchpad, how many inputs,
+    outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
+    transfers as unique transfers (i.e., read a particular input twice --> two inputs
+    transferred).
+  : answer:
+    - 64
+    - 128
+    - 128
     assumptions: []
   ? If we choose to move the (M) loop to beneath the scratchpad, how many inputs,
     outputs, and weights are transferred from the scratchpad to the registers? Count
@@ -243,16 +243,16 @@
     two inputs transferred).
   : answer:
     - 64
-    - 16
-    - 32
+    - 128
+    - 128
     assumptions: []
   ? If we choose to move the (N) loop to beneath the scratchpad, how many inputs,
     outputs, and weights are transferred from DRAM to the scratchpad? Count repeated
     transfers as unique transfers (i.e., read a particular input twice --> two inputs
     transferred).
   : answer:
-    - 64
-    - 16
+    - 128
+    - 128
     - 64
     assumptions: []
   ? If we choose to move the (N) loop to beneath the scratchpad, how many inputs,
@@ -260,40 +260,39 @@
     repeated transfers as unique transfers (i.e., read a particular input twice -->
     two inputs transferred).
   : answer:
+    - 128
+    - 128
     - 64
-    - 16
-    - 32
     assumptions: []
   ? Looking at the einsum, what has to be true about a loop for it to be helpful in
     reducing DRAM-scratchpad transfers for a particular datatype by moving it from
     the DRAM to the scratchpad loop nest? Please answer using the rank of the loop
     (*i.e.* P,Q,R,S,C,N,M) and its role in the Einsum.
-  : answer: A loop must index a data type that is frequently accessed across multiple
-      iterations of upper-level loops.
+  : answer: Loop's rank should not be part of the type.
     assumptions: []
   'To reduce **DRAM <==> Scratchpad** input movement, we could move loops:':
     answer:
+    - (M)
+    - (R)
+    - (S)
     - (P)
     - (Q)
-    - (C)
-    - (N)
-    - (S)
     assumptions: []
   'To reduce **DRAM <==> Scratchpad** output movement, we could move loops:':
     answer:
-    - (M)
-    - (N)
+    - (R)
+    - (S)
     - (C)
     assumptions: []
   'To reduce **DRAM <==> Scratchpad** weight movement, we could move loops:':
     answer:
-    - (R)
-    - (S)
-    - (M)
+    - (N)
+    - (P)
+    - (Q)
     assumptions: []
   Were we able to affect data movement between the scratchpad and registers? Why or why not?:
-    answer: No, because MAC operations still need every input, weight, and output
-      for computation.
+    answer: No, because none of the loops are in the registers so data moves to the
+      registers at every iteration.
     assumptions: []
 '2.1':
   ? What variable names change the number of PEs in the X and Y dimensions? Please
