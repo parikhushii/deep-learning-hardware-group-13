@@ -1,0 +1,11 @@
+ART:
+    version: '0.4'
+    tables:
+      - name: system_top_level.inter_PE_spatial[1..1]
+        area: 1.0
+      - name: system_top_level.DRAM[1..1]
+        area: 0.0
+      - name: system_top_level.Buffer[1..1]
+        area: 7629.01
+      - name: system_top_level.MAC[1..4]
+        area: 3001.76

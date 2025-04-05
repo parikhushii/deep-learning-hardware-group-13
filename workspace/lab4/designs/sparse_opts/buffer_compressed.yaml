@@ -1,0 +1,25 @@
+sparse_optimizations:
+  targets:
+  - target: DRAM
+    representation_format:
+      data_spaces:
+      - name: A
+        ranks:           # no tiling on A, so two ranks needed
+        - format: UOP
+        - format: CP
+      - name: B          # pretiling is required, so B's is represented with 3 ranks
+        ranks:
+        - format: UOP
+        - format: CP
+
+  - target: Buffer
+    representation_format:
+      data_spaces:
+      - name: B
+        ranks:
+        - format: UOP # uncompressed offset pair
+        - format: CP  # coordinate payload
+      - name: A
+        ranks:
+        - format: UOP # uncompressed offset pair
+        - format: CP  # coordinate payload

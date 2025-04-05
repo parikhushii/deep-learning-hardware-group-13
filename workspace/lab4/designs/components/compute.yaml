@@ -1,0 +1,20 @@
+compound_components:
+  version: 0.4
+  classes:
+  - name: compute_gating
+    attributes:
+      technology: "must_specify"
+      datawidth: "must_specify"
+
+    subcomponents:
+    - name: mac
+      class: intmac
+      attributes:
+        width: datawidth
+        datawidth: datawidth
+        technology: technology
+
+    actions:
+    - {name: compute, subcomponents: [{name: mac, actions: [{name: compute}]}]}
+    - {name: compute_gated, subcomponents: []}
+    - {name: leak, subcomponents: [{name: mac, actions: [{name: leak}]}]}

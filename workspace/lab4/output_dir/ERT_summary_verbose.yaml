@@ -1,0 +1,462 @@
+ERT_summary:
+    version: '0.4'
+    table_summary:
+      - name: system_top_level.DRAM[1..1]
+        actions:
+          - name: read
+            energy: 256.0
+          - name: write
+            energy: 256.0
+          - name: update
+            energy: 256.0
+          - name: metadata_read
+            energy: 128.0
+          - name: metadata_write
+            energy: 128.0
+          - name: metadata_update
+            energy: 128.0
+          - name: gated_metadata_read
+            energy: 0
+          - name: gated_metadata_write
+            energy: 0
+          - name: gated_metadata_update
+            energy: 0
+          - name: leak
+            energy: 0.0
+        primitive_estimation(s):
+          - action_name: read
+            arguments: {}
+            energy: 256.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 256.0
+                scale_energy_by: 1.0
+                interpreted_energy: 256.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: write
+            arguments: {}
+            energy: 256.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 256.0
+                scale_energy_by: 1.0
+                interpreted_energy: 256.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: update
+            arguments: {}
+            energy: 256.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: update
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 256.0
+                scale_energy_by: 1.0
+                interpreted_energy: 256.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: metadata_read
+            arguments: {}
+            energy: 128.0
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 128.0
+                scale_energy_by: 1.0
+                interpreted_energy: 128.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: metadata_write
+            arguments: {}
+            energy: 128.0
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 128.0
+                scale_energy_by: 1.0
+                interpreted_energy: 128.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: metadata_update
+            arguments: {}
+            energy: 128.0
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: update
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 128.0
+                scale_energy_by: 1.0
+                interpreted_energy: 128.0
+                percentage: 100.0%
+                estimator: CactiDRAM
+          - action_name: gated_metadata_read
+            arguments: {}
+            energy: 0
+            subaction_estimations: []
+          - action_name: gated_metadata_write
+            arguments: {}
+            energy: 0
+            subaction_estimations: []
+          - action_name: gated_metadata_update
+            arguments: {}
+            energy: 0
+            subaction_estimations: []
+          - action_name: leak
+            arguments: {}
+            energy: 0.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiDRAM
+              - subcomponent_name: metadata_storage
+                subaction_name: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiDRAM
+      - name: system_top_level.Buffer[1..1]
+        actions:
+          - name: write
+            energy: 2.05417
+          - name: read
+            energy: 0.841418
+          - name: gated_write
+            energy: 0.0
+          - name: gated_read
+            energy: 0.0
+          - name: metadata_read
+            energy: 1.45068
+          - name: metadata_write
+            energy: 1.71282
+          - name: gated_metadata_read
+            energy: 0.0
+          - name: gated_metadata_write
+            energy: 0.0
+          - name: update
+            energy: 2.05417
+          - name: leak
+            energy: 3.84017e-05
+        primitive_estimation(s):
+          - action_name: write
+            arguments: {}
+            energy: 2.05417
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 2.054169
+                scale_energy_by: 1.0
+                interpreted_energy: 2.054169
+                percentage: 100.0%
+                estimator: CactiSRAM
+          - action_name: read
+            arguments: {}
+            energy: 0.841418
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.8414185
+                scale_energy_by: 1.0
+                interpreted_energy: 0.8414185
+                percentage: 100.0%
+                estimator: CactiSRAM
+          - action_name: gated_write
+            arguments: {}
+            energy: 0.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiSRAM
+          - action_name: gated_read
+            arguments: {}
+            energy: 0.0
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiSRAM
+          - action_name: metadata_read
+            arguments: {}
+            energy: 1.45068
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 1.450683
+                scale_energy_by: 1.0
+                interpreted_energy: 1.450683
+                percentage: 100.0%
+                estimator: CactiSRAM
+          - action_name: metadata_write
+            arguments: {}
+            energy: 1.71282
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 1.7128214999999998
+                scale_energy_by: 1.0
+                interpreted_energy: 1.7128214999999998
+                percentage: 100.0%
+                estimator: CactiSRAM
+          - action_name: gated_metadata_read
+            arguments: {}
+            energy: 0.0
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiSRAM
+          - action_name: gated_metadata_write
+            arguments: {}
+            energy: 0.0
+            subaction_estimations:
+              - subcomponent_name: metadata_storage
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 0.0
+                scale_energy_by: 1.0
+                interpreted_energy: 0.0
+                percentage: 0%
+                estimator: CactiSRAM
+          - action_name: update
+            arguments: {}
+            energy: 2.05417
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 2.054169
+                scale_energy_by: 1.0
+                interpreted_energy: 2.054169
+                percentage: 100.0%
+                estimator: CactiSRAM
+          - action_name: leak
+            arguments: {}
+            energy: 3.84017e-05
+            subaction_estimations:
+              - subcomponent_name: storage
+                subaction_name: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 3.840170000000001e-05
+                scale_energy_by: 1.0
+                interpreted_energy: 3.840170000000001e-05
+                percentage: 100.0%
+                estimator: CactiSRAM
+      - name: system_top_level.MAC[1..4]
+        actions:
+          - name: compute
+            energy: 15.5746
+          - name: compute_gated
+            energy: 15.5746
+          - name: compute_skipped
+            energy: 15.5746
+        primitive_estimation(s):
+          - action_name: compute
+            arguments: {}
+            energy: 15.5746
+            subaction_estimations:
+              - subcomponent_name: multiplier
+                subaction_name: multiply_random
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.756347656249998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.756347656249998
+                percentage: 50.0%
+                estimator: Aladdin_table
+              - subcomponent_name: adder
+                subaction_name: add
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.818281249999998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.818281249999998
+                percentage: 50.0%
+                estimator: Aladdin_table
+          - action_name: compute_gated
+            arguments: {}
+            energy: 15.5746
+            subaction_estimations:
+              - subcomponent_name: multiplier
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.756347656249998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.756347656249998
+                percentage: 50.0%
+                estimator: Aladdin_table
+              - subcomponent_name: adder
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.818281249999998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.818281249999998
+                percentage: 50.0%
+                estimator: Aladdin_table
+          - action_name: compute_skipped
+            arguments: {}
+            energy: 15.5746
+            subaction_estimations:
+              - subcomponent_name: multiplier
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.756347656249998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.756347656249998
+                percentage: 50.0%
+                estimator: Aladdin_table
+              - subcomponent_name: adder
+                subaction_name: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy: 7.818281249999998
+                scale_energy_by: 1.0
+                interpreted_energy: 7.818281249999998
+                percentage: 50.0%
+                estimator: Aladdin_table

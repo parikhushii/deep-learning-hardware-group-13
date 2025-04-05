@@ -1,0 +1,7 @@
+constraints:
+  version: 0.4
+  targets:
+  - target: DRAM
+    type: dataspace
+    keep: [A, B, Z]
+    bypass: []

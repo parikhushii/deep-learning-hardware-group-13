@@ -1,0 +1,49 @@
+compound_components:
+  version: 0.4
+  classes:
+  - name: regfile_metadata
+    attributes:
+      # attributes that must be specified
+      technology: "must_specify"
+      depth: "must_specify"
+      width: "must_specify"
+      metadata_width: "must_specify"
+      metadata_depth: "must_specify"
+
+      # attributes with default values
+      n_banks: 1
+      n_rw_ports: 2
+
+    subcomponents:
+    - name: storage
+      class: regfile
+      attributes:
+        technology: technology
+        depth: depth
+        width: width
+        n_rw_ports: n_rw_ports
+        n_banks: n_banks
+
+    - name: metadata_storage
+      class: regfile
+      attributes:
+        technology: technology
+        depth: metadata_depth
+        width: metadata_width
+
+    actions:
+    - {name: read, subcomponents: [{name: storage, actions: [{name: read}]}]}
+    - {name: write, subcomponents: [{name: storage, actions: [{name: write}]}]}
+    - {name: update, subcomponents: [{name: storage, actions: [{name: update}]}]}
+
+    - {name: metadata_read, subcomponents: [{name: metadata_storage, actions: [{name: read}]}]}
+    - {name: metadata_write, subcomponents: [{name: metadata_storage, actions: [{name: write}]}]}
+    - {name: metadata_update, subcomponents: [{name: metadata_storage, actions: [{name: update}]}]}
+
+    - {name: gated_metadata_read, subcomponents: []}
+    - {name: gated_metadata_write, subcomponents: []}
+    - {name: gated_metadata_update, subcomponents: []}
+
+    - {name: leak, subcomponents: [{name: storage, actions: [{name: leak}]}, {name: metadata_storage, actions: [{name: leak}]}]}
+
+  

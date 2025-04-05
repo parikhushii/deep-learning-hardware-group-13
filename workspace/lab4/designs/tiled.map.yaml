@@ -1,0 +1,10 @@
+mapping:
+- target: DRAM
+  type: temporal
+  factors: [K=1, M=1, N=4]
+  permutation: [N, K, M]
+
+- target: Buffer
+  type: temporal
+  factors: [K=8, M=8, N=2]
+  permutation: [N, K, M]

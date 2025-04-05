@@ -1,0 +1,6 @@
+mapper:
+  optimization_metrics:  [ delay, energy ]
+  num_threads: 4
+  timeout: 1000
+  victory_condition: 3000
+  algorithm: exhaustive

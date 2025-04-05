@@ -1,0 +1,70 @@
+ERT_summary:
+    version: '0.4'
+    table_summary:
+      - name: system_top_level.DRAM[1..1]
+        actions:
+          - name: read
+            energy: 256.0
+          - name: write
+            energy: 256.0
+          - name: update
+            energy: 256.0
+          - name: metadata_read
+            energy: 128.0
+          - name: metadata_write
+            energy: 128.0
+          - name: metadata_update
+            energy: 128.0
+          - name: gated_metadata_read
+            energy: 0
+          - name: gated_metadata_write
+            energy: 0
+          - name: gated_metadata_update
+            energy: 0
+          - name: leak
+            energy: 0.0
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiDRAM
+          - name: metadata_storage
+            estimator: CactiDRAM
+      - name: system_top_level.Buffer[1..1]
+        actions:
+          - name: write
+            energy: 2.05417
+          - name: read
+            energy: 0.841418
+          - name: gated_write
+            energy: 0.0
+          - name: gated_read
+            energy: 0.0
+          - name: metadata_read
+            energy: 1.45068
+          - name: metadata_write
+            energy: 1.71282
+          - name: gated_metadata_read
+            energy: 0.0
+          - name: gated_metadata_write
+            energy: 0.0
+          - name: update
+            energy: 2.05417
+          - name: leak
+            energy: 3.84017e-05
+        primitive_estimation(s):
+          - name: storage
+            estimator: CactiSRAM
+          - name: metadata_storage
+            estimator: CactiSRAM
+      - name: system_top_level.MAC[1..4]
+        actions:
+          - name: compute
+            energy: 15.5746
+          - name: compute_gated
+            energy: 15.5746
+          - name: compute_skipped
+            energy: 15.5746
+        primitive_estimation(s):
+          - name: multiplier
+            estimator: Aladdin_table
+          - name: adder
+            estimator: Aladdin_table

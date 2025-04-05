@@ -1,0 +1,454 @@
+architecture:
+    version: '0.4'
+    local:
+      - name: system_top_level.DRAM[1..1]
+        class: DRAM_metadata
+        attributes:
+            width: 32
+            datawidth: 16
+            metadata_datawidth: 16
+            metadata_width: 16
+            read_bandwidth: 2
+            write_bandwidth: 2
+            has_power_gating: false
+            n_banks: 2
+            cluster_size: 1
+            reduction_supported: true
+            multiple_buffering: 1
+            min_utilization: 0
+            allow_overbooking: false
+            meshX: 1
+            meshY: 1
+            technology: "45nm"
+            global_cycle_seconds: 1e-09
+            power_gated_at: null
+            version: '0.4'
+            action_latency_cycles: 1
+            cycle_seconds: 1e-09
+            n_instances: 1
+            n_rw_ports: 2
+        primitive_components:
+          - name: storage
+            class: DRAM
+            attributes:
+                technology: "45nm"
+                width: 32
+                n_rw_ports: 2
+                n_banks: 2
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+          - name: metadata_storage
+            class: DRAM
+            attributes:
+                technology: "45nm"
+                width: 16
+                n_rw_ports: 2
+                n_banks: 2
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+        actions:
+          - name: read
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: write
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: update
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: update
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: metadata_read
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: metadata_write
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: metadata_update
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: update
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: gated_metadata_read
+            arguments: {}
+            primitive_actions: []
+          - name: gated_metadata_write
+            arguments: {}
+            primitive_actions: []
+          - name: gated_metadata_update
+            arguments: {}
+            primitive_actions: []
+          - name: leak
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+              - name: metadata_storage
+                action: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+      - name: system_top_level.Buffer[1..1]
+        class: SRAM_MD
+        attributes:
+            data_storage_depth: 512
+            data_storage_width: 16
+            datawidth: 16
+            metadata_storage_width: 16
+            metadata_storage_depth: 512
+            meshY: 1
+            meshX: 1
+            read_bandwidth: 8
+            write_bandwidth: 8
+            enable_overbooking: true
+            has_power_gating: false
+            n_banks: 2
+            cluster_size: 1
+            reduction_supported: true
+            multiple_buffering: 1
+            min_utilization: 0
+            allow_overbooking: false
+            technology: "45nm"
+            metadata_datawidth: 16
+            global_cycle_seconds: 1e-09
+            power_gated_at: null
+            version: '0.4'
+            action_latency_cycles: 1
+            cycle_seconds: 1e-09
+            n_instances: 1
+            n_rdwr_ports: 2
+            counter_width: 0
+            phy_datawidth: 16
+            phy_metadata_datawidth: 16
+            ag_datawidth: 6.238324625039508
+        primitive_components:
+          - name: storage
+            class: SRAM
+            attributes:
+                technology: "45nm"
+                width: 16
+                depth: 512
+                datawidth: 16
+                n_rdwr_ports: 2
+                n_banks: 2
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+          - name: metadata_storage
+            class: SRAM
+            attributes:
+                technology: "45nm"
+                width: 16
+                depth: 512
+                datawidth: 16
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+        actions:
+          - name: write
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: read
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: gated_write
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: gated_read
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: metadata_read
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: read
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: metadata_write
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: gated_metadata_read
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: gated_metadata_write
+            arguments: {}
+            primitive_actions:
+              - name: metadata_storage
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: update
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: write
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: leak
+            arguments: {}
+            primitive_actions:
+              - name: storage
+                action: leak
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+      - name: system_top_level.MAC[1..4]
+        class: Fmac
+        attributes:
+            datawidth: 16
+            has_power_gating: false
+            meshX: 4
+            meshY: 1
+            technology: "45nm"
+            metadata_datawidth: 16
+            global_cycle_seconds: 1e-09
+            power_gated_at: null
+            version: '0.4'
+            action_latency_cycles: 1
+            cycle_seconds: 1e-09
+            n_instances: 1
+            exponent: 5
+            mantissa: 10
+            sign: 1
+        primitive_components:
+          - name: multiplier
+            class: fpmultiplier
+            attributes:
+                technology: "45nm"
+                exponent: 5
+                mantissa: 10
+                sign: 1
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+          - name: adder
+            class: fpadder
+            attributes:
+                technology: "45nm"
+                exponent: 5
+                mantissa: 10
+                sign: 1
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+                cycle_seconds: 1e-09
+                n_instances: 1
+            area_scale: 1
+            energy_scale: 1
+        actions:
+          - name: compute
+            arguments: {}
+            primitive_actions:
+              - name: multiplier
+                action: multiply_random
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+              - name: adder
+                action: add
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: compute_gated
+            arguments: {}
+            primitive_actions:
+              - name: multiplier
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+              - name: adder
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+          - name: compute_skipped
+            arguments: {}
+            primitive_actions:
+              - name: multiplier
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+              - name: adder
+                action: idle
+                arguments:
+                    global_cycle_seconds: 1e-09
+                    action_latency_cycles: 1
+                    cycle_seconds: 1e-09
+                    technology: "45nm"
+                    n_instances: 1
+                energy_scale: 1.0
+      - name: system_top_level.inter_PE_spatial[1..1]
+        class: dummy_storage
+        actions: []
