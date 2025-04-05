@@ -1,4 +1,4 @@
-# Due Date: Friday, March 14th, 2025, 11:59 PM EST
+# Project 6: Investigating the Impact of Sparsity in Operands and Results
 
 # Lab 4: Sparse Matrix Multiplication and Hardware Optimization
 This lab aims to help you get a good understanding of opportunities for optimizing sparse matrix multiplication in hardware accelerators. For detailed instructions, please read [./workspace/lab4/README.md](./workspace/lab4/README.md). 
