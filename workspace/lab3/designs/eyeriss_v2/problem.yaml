@@ -1,0 +1,44 @@
+problem:
+  version: 0.4
+  shape:
+    name: "CNN_Layer"
+    dimensions: [ C, M, R, S, N, P, Q ]
+    coefficients:
+      - name: Wstride
+        default: 1
+      - name: Hstride
+        default: 1
+      - name: Wdilation
+        default: 1
+      - name: Hdilation
+        default: 1
+
+    data_spaces:
+      - name: Weights
+        projection:
+          - [ [C] ]
+          - [ [M] ]
+          - [ [R] ]
+          - [ [S] ]
+      - name: Inputs
+        projection:
+          - [ [N] ]
+          - [ [C] ]
+          - [ [R, Wdilation], [P, Wstride] ]
+          - [ [S, Hdilation], [Q, Hstride] ]
+      - name: Outputs
+        projection:
+          - [ [N] ]
+          - [ [M] ]
+          - [ [Q] ]
+          - [ [P] ]
+        read_write: True
+
+  instance:
+    C: 64   # input channels
+    M: 8192  # output channels
+    R: 9    # filter height
+    S: 9    # filter width
+    N: 1    # batch size
+    P: 392   # output height
+    Q: 392   # output width 

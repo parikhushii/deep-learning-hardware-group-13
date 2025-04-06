@@ -1,0 +1,70 @@
+mapping:
+# mapping for the DRAM
+- target: DRAM
+  type: temporal
+  factors: [C=8, M=128, R=3, S=3, N=1, P=56, Q=56]
+  permutation: [C, M, R, S, N, P, Q]
+
+# mapping for the global buffer
+- target: global_buffer
+  type: temporal
+  factors: [C=8, M=8, R=1, S=1, N=1, P=7, Q=7]
+  permutation: [C, M, R, S, N, P, Q]
+
+# mapping for the cluster
+- target: cluster
+  type: spatial
+  factors: [C=1, M=2, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [M, C, N, P, Q, R, S]
+
+# mapping for the PE array
+- target: PE_array
+  type: spatial
+  factors: [C=1, M=4, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [M, C, N, P, Q, R, S]
+
+# mapping for the scratchpad
+- target: scratchpad
+  type: temporal
+  factors: [C=1, M=1, R=3, S=3, N=1, P=1, Q=1]
+  permutation: [R, S, P, Q, N, M, C]
+- target: scratchpad
+  type: dataspace
+  keep: [Weights]
+  bypass: [Inputs, Outputs]
+
+# mapping for the weight register
+- target: weight_reg
+  type: temporal
+  factors: [C=1, M=1, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [C, M, R, S]
+- target: weight_reg
+  type: dataspace
+  keep: [Weights]
+  bypass: [Inputs, Outputs]
+
+# mapping for the input activation register
+- target: input_activation_reg
+  type: temporal
+  factors: [C=1, M=1, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [C, N, P, Q]
+- target: input_activation_reg
+  type: dataspace
+  keep: [Inputs]
+  bypass: [Weights, Outputs]
+
+# mapping for the output activation register
+- target: output_activation_reg
+  type: temporal
+  factors: [C=1, M=1, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [M, N, P]
+- target: output_activation_reg
+  type: dataspace
+  keep: [Outputs]
+  bypass: [Weights, Inputs]
+
+# mapping for the metadata buffer
+- target: metadata_buffer
+  type: temporal
+  factors: [C=1, M=1, R=1, S=1, N=1, P=1, Q=1]
+  permutation: [C, M, R, S, N, P, Q] 
