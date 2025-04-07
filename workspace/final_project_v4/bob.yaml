@@ -1,0 +1,247 @@
+architecture:
+  version: 0.4
+
+  subtree:
+    - name: System
+      attributes:
+        technology: 45nm
+
+      local:
+        - name: BackingStorage
+          class: DRAM
+          subclass: DummyStorage
+          attributes:
+            width: 64
+            block_size: 8
+            datawidth: 8
+            metadata_storage_width: 8
+
+      subtree:
+        - name: ClusterArray
+          spatial: {X: 8, Y: 2}
+
+          subtree:
+            - name: PE_Cluster
+              spatial: {X: 1, Y: 1}  # each ClusterArray element is a PE cluster
+
+              subtree:
+                - name: PE
+                  spatial: {X: 3, Y: 4}  # 3×4 = 12 PEs per cluster
+                  local:
+                    - name: iact_spad
+                      class: storage
+                      subclass: SRAM_MD
+                      attributes:
+                        data_storage_depth: 16
+                        data_storage_width: 8
+                        metadata_storage_depth: 25
+                        metadata_storage_width: 4
+                        datawidth: 8
+                        block_size: 1
+
+                    - name: weight_spad
+                      class: storage
+                      subclass: SRAM_MD
+                      attributes:
+                        data_storage_depth: 192
+                        data_storage_width: 8
+                        metadata_storage_depth: 128
+                        metadata_storage_width: 8
+                        datawidth: 8
+                        block_size: 1
+
+                    - name: psum_spad
+                      class: storage
+                      subclass: SRAM
+                      attributes:
+                        depth: 32
+                        width: 20
+                        datawidth: 20
+                        block_size: 1
+
+                    - name: reg
+                      class: storage
+                      subclass: SRAM_MD
+                      attributes:
+                        data_storage_depth: 1
+                        data_storage_width: 8
+                        metadata_storage_width: 4
+                        metadata_storage_depth: 1
+                        datawidth: 8
+
+                    - name: MAC
+                      class: compute
+                      subclass: Imac
+                      attributes:
+                        datawidth: 8
+
+            - name: GLB_Cluster
+              spatial: {X: 1, Y: 1}  # 1 GLB per PE cluster
+
+              local:
+                - name: iact_glb
+                  class: storage
+                  subclass: SRAM
+                  spatial: {bankX: 3}
+                  attributes:
+                    depth: 1536  # 1.5 KB = 1536 B / 1 B per word
+                    width: 8
+                    datawidth: 8
+                    block_size: 1
+
+                - name: psum_glb
+                  class: storage
+                  subclass: SRAM
+                  spatial: {bankX: 4}
+                  attributes:
+                    depth: 1920  # 1.875 KB = 1920 B
+                    width: 8
+                    datawidth: 8
+                    block_size: 1
+
+            - name: Router_Cluster
+              spatial: {X: 1, Y: 1}
+
+              local:
+                - name: iact_router
+                  class: arithmetic
+                  subclass: Network
+                  spatial: {X: 3}
+                  attributes:
+                    num_ports: 4
+                    datawidth: 24
+
+                - name: weight_router
+                  class: arithmetic
+                  subclass: Network
+                  spatial: {X: 3}
+                  attributes:
+                    num_ports: 2
+                    datawidth: 24
+
+                - name: psum_router
+                  class: arithmetic
+                  subclass: Network
+                  spatial: {X: 4}
+                  attributes:
+                    num_ports: 3
+                    datawidth: 40!Hierarchical
+
+
+# ################################
+architecture:
+  version: 0.4
+  nodes:
+    - !Container
+      name: System
+      attributes:
+        technology: "45nm"
+        global_cycle_seconds: 1e-9
+        datawidth: 8
+        
+    - !Component
+      name: BackingStorage
+      class: DRAM
+      subclass: DummyStorage
+      attributes:
+        width: 64
+        block_size: 8
+        datawidth: 8
+        metadata_storage_width: 8
+
+    - !Hierarchical 
+      nodes:   
+        - !Container
+          name: ClusterArray
+          spatial: {meshX: 8, meshY: 2}
+    
+        - !Hierarchical 
+          nodes: 
+          - !Container
+            name: PE_Cluster
+            spatial: {meshX: 3, meshXY: 4}
+          
+          - !Container
+            name: PE
+    
+            - !Parrallel 
+            nodes: 
+            - !Component
+              name: iact_spad
+              class: storage
+              subclass: SRAM_MD 
+              attributes:
+                data_storage_depth: 16
+                data_storage_width: 8
+                metadata_storage_depth: 25 
+                metadata_storage_width: 4
+                datawidth: 8
+                block_size: 1
+            - !Component
+              name: weight_spad
+              class: storage
+              subclass: SRAM_MD
+              attributes:
+                data_storage_depth: 192      
+                data_storage_width: 8
+                metadata_storage_depth: 128 
+                metadata_storage_width: 8
+                datawidth: 8
+                block_size: 1
+            - !Component
+              name: psum_spad
+              class: storage
+              subclass: SRAM
+              attributes:
+                depth: 32
+                width: 20
+                datawidth: 20
+                block_size: 1
+            - !Component
+              name: reg
+              class: storage
+              subclass: SRAM_MD 
+              attributes:
+                data_storage_depth: 1
+                data_storage_width: 8
+                metadata_storage_width: 4
+                metadata_storage_depth: 1
+                datawidth: 8
+            - !Component
+              name: MAC
+              class: compute
+              subclass: Imac
+              attributes:
+                datawidth: 8
+    
+        - !Hierarchical 
+          nodes: 
+            - !Container
+              name: GLB_Cluster
+              spatial: {meshX: 1, meshY: 1}
+              
+            - !Component
+              name: iact_glb
+              class: storage
+              subclass: SRAM
+              spatial: {bankX: 3}
+              attributes:
+                depth: 1536
+                width: 8
+                datawidth: 8
+                block_size: 1
+    
+        - !Hierarchical 
+          nodes: 
+          - !Container
+            name: Router_Cluster
+            spatial: {meshX: 1, meshY: 1}
+            
+          - !Component
+            name: iact_router
+            class: arithmetic
+            subclass: Network
+            spatial: {X: 3}
+            num_ports: 4
+                datawidth: 24
+

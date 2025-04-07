@@ -1,0 +1,791 @@
+dumped_by_timeloop_front_end: true
+architecture:
+    version: '0.4'
+    subtree:
+      - name: System_top_level
+        attributes:
+            version: '0.4'
+            technology: "45nm"
+            global_cycle_seconds: 1e-9
+            metadata_datawidth: 1
+            datawidth: 8
+            has_power_gating: false
+            power_gated_at: null
+        local:
+          - name: DRAM[1..1]
+            class: DRAM
+            attributes:
+                width: 64
+                block_size: 8
+                datawidth: 8
+                metadata_storage_width: 8
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 1
+                meshY: 1
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: inter_ClusterArray_spatial[1..1]
+            class: dummy_storage
+            attributes:
+                width: 1
+                depth: 1
+                datawidth: 1
+                technology: -1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 1
+                meshY: 1
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            enabled: true
+          - name: inter_glb_spatial[1..16]
+            class: dummy_storage
+            attributes:
+                width: 1
+                depth: 1
+                datawidth: 1
+                technology: -1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 8
+                meshY: 2
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            enabled: true
+          - name: glb[1..112]
+            class: storage
+            subclass: SRAM
+            attributes:
+                depth: 1728
+                width: 8
+                datawidth: 8
+                block_size: 1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 56
+                meshY: 2
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: inter_PE_Cluster_spatial[1..112]
+            class: dummy_storage
+            attributes:
+                width: 1
+                depth: 1
+                datawidth: 1
+                technology: -1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 56
+                meshY: 2
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            enabled: true
+          - name: iact_spad[1..1344]
+            class: storage
+            subclass: SRAM_MD
+            attributes:
+                data_storage_depth: 16
+                data_storage_width: 8
+                metadata_storage_depth: 25
+                metadata_storage_width: 4
+                datawidth: 8
+                block_size: 1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 168
+                meshY: 8
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: weight_spad[1..1344]
+            class: storage
+            subclass: SRAM_MD
+            attributes:
+                data_storage_depth: 192
+                data_storage_width: 8
+                metadata_storage_depth: 128
+                metadata_storage_width: 8
+                datawidth: 8
+                block_size: 1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 168
+                meshY: 8
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: psum_spad[1..1344]
+            class: storage
+            subclass: SRAM
+            attributes:
+                depth: 32
+                width: 20
+                datawidth: 20
+                block_size: 1
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 168
+                meshY: 8
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: reg[1..1344]
+            class: storage
+            subclass: SRAM_MD
+            attributes:
+                data_storage_depth: 1
+                data_storage_width: 8
+                metadata_storage_depth: 1
+                metadata_storage_width: 4
+                datawidth: 8
+                has_power_gating: false
+                n_banks: 2
+                cluster_size: 1
+                reduction_supported: true
+                multiple_buffering: 1
+                min_utilization: 0
+                allow_overbooking: false
+                meshX: 168
+                meshY: 8
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - write
+              - update
+              - read
+              - leak
+            enabled: true
+          - name: MAC[1..1344]
+            class: compute
+            subclass: Fmac
+            attributes:
+                datawidth: 8
+                has_power_gating: false
+                meshX: 168
+                meshY: 8
+                technology: "45nm"
+                global_cycle_seconds: 1e-9
+                power_gated_at: null
+            required_actions:
+              - compute
+            enabled: true
+architecture_constraints:
+    targets: []
+problem:
+    instance:
+        C: 64
+        E: 32
+        F: 32
+        G: 1
+        M: 64
+        N: 1
+        R: 1
+        S: 1
+        densities: {}
+    shape:
+        coefficients:
+          - default: 1
+            name: Wstride
+          - default: 1
+            name: Hstride
+          - default: 1
+            name: Wdilation
+          - default: 1
+            name: Hdilation
+        data_spaces:
+          - name: Weights
+            projection:
+              -   -   - C
+              -   -   - M
+              -   -   - G
+              -   -   - R
+              -   -   - S
+            read_write: false
+          - name: Inputs
+            projection:
+              -   -   - N
+              -   -   - C
+              -   -   - G
+              -   -   - R
+                      - Wdilation
+                  -   - E
+                      - Wdilation
+              -   -   - S
+                      - Hdilation
+                  -   - F
+                      - Hstride
+            read_write: false
+          - name: Outputs
+            projection:
+              -   -   - N
+              -   -   - G
+              -   -   - M
+              -   -   - F
+              -   -   - E
+            read_write: true
+        dimensions:
+          - R
+          - S
+          - E
+          - F
+          - C
+          - M
+          - N
+          - G
+        name: grouped-CONV
+    version: '0.4'
+compound_components:
+    version: '0.4'
+    classes:
+      - name: SRAM_MD
+        attributes:
+            technology: must_specify
+            data_storage_depth: must_specify
+            data_storage_width: must_specify
+            metadata_storage_width: 0
+            metadata_storage_depth: 0
+            n_banks: 1
+            n_rdwr_ports: 2
+            counter_width: 0
+            phy_datawidth: data_storage_width
+            phy_metadata_datawidth: metadata_storage_width
+            ag_datawidth: log(data_storage_depth)
+        subcomponents:
+          - name: storage
+            class: SRAM
+            attributes:
+                technology: technology
+                width: data_storage_width
+                depth: data_storage_depth
+                datawidth: phy_datawidth
+                n_rdwr_ports: n_rdwr_ports
+                n_banks: n_banks
+          - name: metadata_storage
+            class: SRAM
+            attributes:
+                technology: technology
+                width: metadata_storage_width
+                depth: metadata_storage_depth
+                datawidth: phy_metadata_datawidth
+        actions:
+          - name: leak
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: leak
+          - name: update
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: update
+          - name: write
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: write
+          - name: read
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: read
+          - name: gated_write
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: idle
+          - name: gated_read
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: idle
+          - name: metadata_leak
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: leak
+          - name: metadata_update
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: update
+          - name: metadata_read
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: read
+          - name: metadata_write
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: write
+          - name: gated_metadata_read
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: idle
+          - name: gated_metadata_write
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: idle
+      - name: FIFO
+        attributes:
+            technology: must_specify
+            depth: must_specify
+            width: must_specify
+            counter_width: log2(depth)
+        subcomponents:
+          - name: storage
+            class: SRAM
+            attributes:
+                technology: technology
+                width: width
+                depth: depth
+                datawidth: width
+          - name: addr_counters[0..1]
+            class: intadder
+            attributes:
+                technology: technology
+                datawidth: counter_width
+          - name: occupancy_counter
+            class: intadder
+            attributes:
+                technology: technology
+                datawidth: counter_width
+        actions:
+          - name: read
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: read
+              - name: addr_counters[0]
+                actions:
+                  - name: add
+              - name: occupancy_counter
+                actions:
+                  - name: add
+          - name: write
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: write
+              - name: addr_counters[0]
+                actions:
+                  - name: add
+              - name: occupancy_counter
+                actions:
+                  - name: add
+      - name: SRAM_MD_bank_control
+        attributes:
+            technology: must_specify
+            data_storage_depth: must_specify
+            data_storage_width: must_specify
+            control_queue_depth: must_specify
+            metadata_storage_width: 0
+            metadata_storage_depth: 0
+            n_banks: 1
+            n_rdwr_ports: 2
+            counter_width: 0
+            phy_datawidth: data_storage_width
+            phy_metadata_datawidth: metadata_storage_width
+            ag_datawidth: log(data_storage_depth)
+        subcomponents:
+          - name: storage
+            class: SRAM
+            attributes:
+                technology: technology
+                width: data_storage_width
+                depth: data_storage_depth
+                datawidth: phy_datawidth
+                n_rdwr_ports: n_rdwr_ports
+                n_banks: n_banks
+          - name: control_queues[0..n_banks]
+            class: FIFO
+            attributes:
+                technology: technology
+                width: datawidth
+                depth: control_queue_depth
+          - name: metadata_storage
+            class: SRAM
+            attributes:
+                technology: technology
+                width: metadata_storage_width
+                depth: metadata_storage_depth
+                datawidth: phy_metadata_datawidth
+        actions:
+          - name: write
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: write
+              - name: control_queues[0]
+                actions:
+                  - name: write
+          - name: read
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: read
+              - name: control_queues[0]
+                actions:
+                  - name: read
+          - name: gated_write
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: idle
+          - name: gated_read
+            subcomponents:
+              - name: storage
+                actions:
+                  - name: idle
+          - name: metadata_read
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: read
+          - name: metadata_write
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: write
+          - name: gated_metadata_read
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: idle
+          - name: gated_metadata_write
+            subcomponents:
+              - name: metadata_storage
+                actions:
+                  - name: idle
+      - name: Imac
+        attributes:
+            technology: must_specify
+            datawidth: must_specify
+        subcomponents:
+          - name: multiplier
+            class: intmultiplier
+            attributes:
+                technology: technology
+                datawidth: datawidth
+          - name: adder
+            class: intadder
+            attributes:
+                technology: technology
+                datawidth: datawidth
+        actions:
+          - name: compute
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: multiply_random
+              - name: adder
+                actions:
+                  - name: add
+          - name: compute_gated
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+          - name: compute_skipped
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+      - name: Imac_Decoder
+        attributes:
+            technology: must_specify
+            datawidth: must_specify
+            decoder_width: must_specify
+        subcomponents:
+          - name: multiplier
+            class: intmultiplier
+            attributes:
+                technology: technology
+                datawidth: datawidth
+          - name: adder
+            class: intadder
+            attributes:
+                technology: technology
+                datawidth: datawidth
+          - name: decoder
+            class: intadder
+            attributes:
+                technology: technology
+                datawidth: decoder_width
+        actions:
+          - name: compute
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: multiply_random
+              - name: adder
+                actions:
+                  - name: add
+              - name: decoder
+                actions:
+                  - name: adder
+          - name: compute_gated
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+          - name: compute_skipped
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+      - name: Fmac
+        attributes:
+            technology: must_specify
+            exponent: 5
+            mantissa: 10
+            sign: 1
+        subcomponents:
+          - name: multiplier
+            class: fpmultiplier
+            attributes:
+                technology: technology
+                exponent: exponent
+                mantissa: mantissa
+                sign: sign
+          - name: adder
+            class: fpadder
+            attributes:
+                technology: technology
+                exponent: exponent
+                mantissa: mantissa
+                sign: sign
+        actions:
+          - name: compute
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: multiply_random
+              - name: adder
+                actions:
+                  - name: add
+          - name: compute_gated
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+          - name: compute_skipped
+            subcomponents:
+              - name: multiplier
+                actions:
+                  - name: idle
+              - name: adder
+                actions:
+                  - name: idle
+mapping:
+  - target: DRAM
+    factors: M=8,E=0,F=0,R=1,S=0,N=0,G=0,C=8
+    permutation: REFSCMNG
+    type: temporal
+  - type: spatial
+    permutation: GNSR
+    target: inter_ClusterArray_spatial
+  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
+    permutation: RSEFCMNG
+    type: temporal
+    target: inter_ClusterArray_spatial
+  - bypass:
+      - Weights
+      - Inputs
+      - Outputs
+    type: bypass
+    target: inter_ClusterArray_spatial
+  - type: spatial
+    permutation: GNSR
+    target: inter_glb_spatial
+  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
+    permutation: RSEFCMNG
+    type: temporal
+    target: inter_glb_spatial
+  - bypass:
+      - Weights
+      - Inputs
+      - Outputs
+    type: bypass
+    target: inter_glb_spatial
+  - type: temporal
+    permutation: GNSR
+    target: glb
+  - type: spatial
+    permutation: GNSR
+    target: inter_PE_Cluster_spatial
+  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
+    permutation: RSEFCMNG
+    type: temporal
+    target: inter_PE_Cluster_spatial
+  - bypass:
+      - Weights
+      - Inputs
+      - Outputs
+    type: bypass
+    target: inter_PE_Cluster_spatial
+  - target: iact_spad
+    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
+    permutation: MCRSEFGN
+    type: temporal
+  - target: iact_spad
+    bypass:
+      - Weights
+      - Outputs
+    keep:
+      - Inputs
+    type: bypass
+  - target: weight_spad
+    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
+    permutation: MCRSEFGN
+    type: temporal
+  - target: weight_spad
+    bypass:
+      - Inputs
+      - Outputs
+    keep:
+      - Weights
+    type: bypass
+  - target: psum_spad
+    factors: M=8,E=1,F=1,R=0,S=1,N=1,G=1,C=8
+    permutation: MCRSEFGN
+    type: temporal
+  - target: psum_spad
+    bypass:
+      - Inputs
+      - Weights
+    keep:
+      - Outputs
+    type: bypass
+  - target: reg
+    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
+    permutation: MCEFRSGN
+    type: temporal
+  - target: reg
+    bypass:
+      - Weights
+      - Outputs
+    keep:
+      - Inputs
+    type: bypass
+mapper:
+    version: '0.4'
+    out_prefix: timeloop-mapper
+    num_threads: 8
+    optimization_metric: []
+    search_size: null
+    timeout: 1000
+    victory_condition: null
+    sync_interval: null
+    log_interval: 1
+    log_oaves: false
+    log_oaves_mappings: false
+    log_stats: false
+    log_suboptimal: false
+    live_status: false
+    diagnostics: false
+    penalize_consecutive_bypass_fails: false
+    emit_whoop_nest: false
+    max_temporal_loops_in_a_mapping: -1
+    algorithm: hybrid
+    filter_revisits: false
+    max_permutations_per_if_visit: 16
+mapspace:
+    version: '0.4'
+    template: uber
+globals:
+    version: '0.4'
+    environment_variables: {}
+    expression_custom_functions: []
+    accelergy_plug_ins: []
