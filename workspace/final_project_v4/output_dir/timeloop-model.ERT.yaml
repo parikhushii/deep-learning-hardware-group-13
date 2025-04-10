@@ -3,16 +3,6 @@ ERT:
     tables:
       - name: System_top_level.DRAM[1..1]
         actions:
-          - name: write
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-            energy: 512.0
-          - name: update
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-            energy: 512.0
           - name: read
             arguments:
                 global_cycle_seconds: 1e-09
@@ -23,18 +13,18 @@ ERT:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
             energy: 0.0
-      - name: System_top_level.glb[1..112]
-        actions:
           - name: write
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-            energy: 1.96227
+            energy: 512.0
           - name: update
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-            energy: 1.96227
+            energy: 512.0
+      - name: System_top_level.glb[1..112]
+        actions:
           - name: read
             arguments:
                 global_cycle_seconds: 1e-09
@@ -45,18 +35,18 @@ ERT:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
             energy: 5.5637e-05
-      - name: System_top_level.psum_spad[1..1344]
-        actions:
           - name: write
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-            energy: 0.341622
+            energy: 1.96227
           - name: update
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-            energy: 0.341622
+            energy: 1.96227
+      - name: System_top_level.psum_spad[1..1792]
+        actions:
           - name: read
             arguments:
                 global_cycle_seconds: 1e-09
@@ -67,7 +57,17 @@ ERT:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
             energy: 3.71613e-06
-      - name: System_top_level.iact_spad[1..1344]
+          - name: write
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 0.341622
+          - name: update
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+            energy: 0.341622
+      - name: System_top_level.iact_spad[1..1792]
         actions:
           - name: leak
             arguments: {}
@@ -105,7 +105,7 @@ ERT:
           - name: gated_metadata_write
             arguments: {}
             energy: 0.0
-      - name: System_top_level.weight_spad[1..1344]
+      - name: System_top_level.weight_spad[1..1792]
         actions:
           - name: leak
             arguments: {}
@@ -143,7 +143,7 @@ ERT:
           - name: gated_metadata_write
             arguments: {}
             energy: 0.0
-      - name: System_top_level.reg[1..1344]
+      - name: System_top_level.reg[1..1792]
         actions:
           - name: leak
             arguments: {}
@@ -181,7 +181,7 @@ ERT:
           - name: gated_metadata_write
             arguments: {}
             energy: 0.0
-      - name: System_top_level.MAC[1..1344]
+      - name: System_top_level.MAC[1..1792]
         actions:
           - name: compute
             arguments: {}

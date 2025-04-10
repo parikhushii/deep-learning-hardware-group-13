@@ -3,44 +3,44 @@ ERT_summary:
     table_summary:
       - name: System_top_level.DRAM[1..1]
         actions:
-          - name: write
-            energy: 512.0
-          - name: update
-            energy: 512.0
           - name: read
             energy: 512.0
           - name: leak
             energy: 0.0
+          - name: write
+            energy: 512.0
+          - name: update
+            energy: 512.0
         primitive_estimation(s):
           - System_top_level.DRAM[1..1]:
                 estimator: CactiDRAM
       - name: System_top_level.glb[1..112]
         actions:
-          - name: write
-            energy: 1.96227
-          - name: update
-            energy: 1.96227
           - name: read
             energy: 2.07867
           - name: leak
             energy: 5.5637e-05
+          - name: write
+            energy: 1.96227
+          - name: update
+            energy: 1.96227
         primitive_estimation(s):
           - System_top_level.glb[1..112]:
                 estimator: CactiSRAM
-      - name: System_top_level.psum_spad[1..1344]
+      - name: System_top_level.psum_spad[1..1792]
         actions:
-          - name: write
-            energy: 0.341622
-          - name: update
-            energy: 0.341622
           - name: read
             energy: 0.233174
           - name: leak
             energy: 3.71613e-06
+          - name: write
+            energy: 0.341622
+          - name: update
+            energy: 0.341622
         primitive_estimation(s):
-          - System_top_level.psum_spad[1..1344]:
+          - System_top_level.psum_spad[1..1792]:
                 estimator: CactiSRAM
-      - name: System_top_level.iact_spad[1..1344]
+      - name: System_top_level.iact_spad[1..1792]
         actions:
           - name: leak
             energy: 7.43225e-07
@@ -271,7 +271,7 @@ ERT_summary:
                 interpreted_energy: 0.0
                 percentage: 0%
                 estimator: CactiSRAM
-      - name: System_top_level.weight_spad[1..1344]
+      - name: System_top_level.weight_spad[1..1792]
         actions:
           - name: leak
             energy: 8.04175e-06
@@ -502,7 +502,7 @@ ERT_summary:
                 interpreted_energy: 0.0
                 percentage: 0%
                 estimator: CactiSRAM
-      - name: System_top_level.reg[1..1344]
+      - name: System_top_level.reg[1..1792]
         actions:
           - name: leak
             energy: 4.64516e-08
@@ -733,7 +733,7 @@ ERT_summary:
                 interpreted_energy: 0.0
                 percentage: 0%
                 estimator: CactiSRAM
-      - name: System_top_level.MAC[1..1344]
+      - name: System_top_level.MAC[1..1792]
         actions:
           - name: compute
             energy: 15.5746

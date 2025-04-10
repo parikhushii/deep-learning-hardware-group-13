@@ -44,7 +44,7 @@ architecture:
           nodes:
             - !Container
               name: PE_Cluster
-              spatial: {meshX: 3, meshY: 4}
+              spatial: {meshX: 4, meshY: 4}
 
             - !Hierarchical
               nodes:

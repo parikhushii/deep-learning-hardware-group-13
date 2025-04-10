@@ -31,7 +31,7 @@ problem:
       - [ [N] ]
       - [ [C] ]
       - [ [G] ]
-      - [ [R, Wdilation], [E, Wdilation] ]
+      - [ [R, Wdilation], [E, Wstride] ]
       - [ [S, Hdilation], [F, Hstride] ]
     - name: Outputs
       projection:

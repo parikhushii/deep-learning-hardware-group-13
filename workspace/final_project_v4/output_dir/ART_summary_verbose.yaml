@@ -16,10 +16,10 @@ ART_summary:
       - name: System_top_level.inter_PE_Cluster_spatial[1..112]
         area: 1.0
         primitive_estimations: dummy
-      - name: System_top_level.psum_spad[1..1344]
+      - name: System_top_level.psum_spad[1..1792]
         area: 402.727
         primitive_estimations: CactiSRAM
-      - name: System_top_level.iact_spad[1..1344]
+      - name: System_top_level.iact_spad[1..1792]
         area: 132.077
         primitive_estimations:
           - name: storage
@@ -32,7 +32,7 @@ ART_summary:
             area: 51.5312
             area_scale: 1
             total_component_area: 51.5312
-      - name: System_top_level.weight_spad[1..1344]
+      - name: System_top_level.weight_spad[1..1792]
         area: 1302.68
         primitive_estimations:
           - name: storage
@@ -45,7 +45,7 @@ ART_summary:
             area: 473.5
             area_scale: 1
             total_component_area: 473.5
-      - name: System_top_level.reg[1..1344]
+      - name: System_top_level.reg[1..1792]
         area: 7.09533
         primitive_estimations:
           - name: storage
@@ -58,7 +58,7 @@ ART_summary:
             area: 2.06125
             area_scale: 1
             total_component_area: 2.06125
-      - name: System_top_level.MAC[1..1344]
+      - name: System_top_level.MAC[1..1792]
         area: 3001.76
         primitive_estimations:
           - name: multiplier

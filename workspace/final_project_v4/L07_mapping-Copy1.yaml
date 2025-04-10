@@ -1,7 +1,96 @@
 mapping:
 - target: DRAM
   factors: 
-  - M=2
+  - M=8 
+  - E=0 
+  - F=0 
+  - R=1 
+  - S=0 
+  - N=0 
+  - G=0 
+  - C=8
+  permutation: [R, E, F, S, C, M, N, G]
+  type: temporal
+  
+- target: iact_spad
+  factors: 
+  - M=1 
+  - E=1 
+  - F=1 
+  - R=1 
+  - S=1 
+  - N=1 
+  - G=1 
+  - C=1
+  permutation: [M, C, R, S, E, F, G, N]
+  type: temporal
+  
+- target: iact_spad
+  bypass: [Weights, Outputs]
+  keep: [Inputs]
+  type: dataspace
+
+- target: weight_spad
+  factors: 
+  - M=1 
+  - E=1 
+  - F=1 
+  - R=1 
+  - S=1 
+  - N=1 
+  - G=1 
+  - C=1
+  permutation: [M, C, R, S, E, F, G, N]
+  type: temporal
+  
+- target: weight_spad
+  bypass: [Inputs, Outputs]
+  keep: [Weights]
+  type: dataspace
+  
+- target: psum_spad
+  factors: 
+  - M=8 
+  - E=1 
+  - F=1 
+  - R=0 
+  - S=1 
+  - N=1 
+  - G=1 
+  - C=8
+  permutation: [M, C, R, S, E, F, G, N]
+  type: temporal
+  
+- target: psum_spad
+  bypass: [Inputs, Weights]
+  keep: [Outputs]
+  type: dataspace
+  
+- target: reg
+  factors: 
+  - M=1 
+  - E=1 
+  - F=1 
+  - R=1 
+  - S=1 
+  - N=1 
+  - G=1 
+  - C=1
+  permutation: [M, C, E, F, R, S, G, N]
+  type: temporal
+  
+- target: reg
+  bypass: [Weights, Outputs]
+  keep: [Inputs]
+  type: dataspace
+
+  ##########################
+
+
+  mapping:
+- target: DRAM
+  factors: 
+  - M=1 
   - E=0 
   - F=0 
   - R=1 
@@ -43,7 +132,7 @@ mapping:
 # input activations
 - target: iact_spad
   factors: 
-  - M=1
+  - M=1 
   - E=1 
   - F=1 
   - R=1 
@@ -82,7 +171,7 @@ mapping:
   # partial sums
 - target: psum_spad
   factors: 
-  - M=1
+  - M=2 
   - E=1 
   - F=1 
   - R=0 

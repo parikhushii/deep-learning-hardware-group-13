@@ -32,7 +32,7 @@ services:
     hostname: labs
     image: timeloopaccelergy/timeloop-accelergy-pytorch:latest-${DOCKER_ARCH}
     ports:
-      - "8888:8888"
+      - "8282:8888"
     volumes:
       - ./workspace:/home/workspace
     environment:

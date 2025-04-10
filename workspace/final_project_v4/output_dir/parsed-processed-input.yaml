@@ -32,10 +32,10 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
           - name: inter_ClusterArray_spatial[1..1]
             class: dummy_storage
@@ -96,10 +96,10 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
           - name: inter_PE_Cluster_spatial[1..112]
             class: dummy_storage
@@ -120,7 +120,7 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             enabled: true
-          - name: iact_spad[1..1344]
+          - name: iact_spad[1..1792]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -137,18 +137,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 168
+                meshX: 224
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
-          - name: weight_spad[1..1344]
+          - name: weight_spad[1..1792]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -165,18 +165,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 168
+                meshX: 224
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
-          - name: psum_spad[1..1344]
+          - name: psum_spad[1..1792]
             class: storage
             subclass: SRAM
             attributes:
@@ -191,18 +191,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 168
+                meshX: 224
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
-          - name: reg[1..1344]
+          - name: reg[1..1792]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -218,24 +218,24 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 168
+                meshX: 224
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - write
-              - update
               - read
               - leak
+              - write
+              - update
             enabled: true
-          - name: MAC[1..1344]
+          - name: MAC[1..1792]
             class: compute
             subclass: Fmac
             attributes:
                 datawidth: 8
                 has_power_gating: false
-                meshX: 168
+                meshX: 224
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
@@ -283,7 +283,7 @@ problem:
               -   -   - R
                       - Wdilation
                   -   - E
-                      - Wdilation
+                      - Wstride
               -   -   - S
                       - Hdilation
                   -   - F
@@ -670,12 +670,14 @@ compound_components:
                   - name: idle
 mapping:
   - target: DRAM
-    factors: M=8,E=0,F=0,R=1,S=0,N=0,G=0,C=8
+    factors: M=2,E=0,F=0,R=1,S=0,N=0,G=0,C=8
     permutation: REFSCMNG
     type: temporal
   - type: spatial
-    permutation: GNSR
     target: inter_ClusterArray_spatial
+    factors: C=2,M=8,E=1,F=1,R=1,S=1,N=1,G=1
+    permutation: MCRSEFGN
+    split: 1
   - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
     permutation: RSEFCMNG
     type: temporal
@@ -703,8 +705,10 @@ mapping:
     permutation: GNSR
     target: glb
   - type: spatial
-    permutation: GNSR
     target: inter_PE_Cluster_spatial
+    factors: C=4,M=4,E=1,F=1,R=1,S=1,N=1,G=1
+    permutation: MCRSEFGN
+    split: 1
   - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
     permutation: RSEFCMNG
     type: temporal
@@ -738,7 +742,7 @@ mapping:
       - Weights
     type: bypass
   - target: psum_spad
-    factors: M=8,E=1,F=1,R=0,S=1,N=1,G=1,C=8
+    factors: M=1,E=1,F=1,R=0,S=1,N=1,G=1,C=1
     permutation: MCRSEFGN
     type: temporal
   - target: psum_spad
