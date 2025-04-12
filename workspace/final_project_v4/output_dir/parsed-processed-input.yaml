@@ -32,10 +32,10 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - read
-              - leak
               - write
               - update
+              - leak
+              - read
             enabled: true
           - name: inter_ClusterArray_spatial[1..1]
             class: dummy_storage
@@ -56,7 +56,7 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             enabled: true
-          - name: inter_glb_spatial[1..16]
+          - name: inter_PE_Cluster_spatial[1..16]
             class: dummy_storage
             attributes:
                 width: 1
@@ -75,52 +75,7 @@ architecture:
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             enabled: true
-          - name: glb[1..112]
-            class: storage
-            subclass: SRAM
-            attributes:
-                depth: 1728
-                width: 8
-                datawidth: 8
-                block_size: 1
-                has_power_gating: false
-                n_banks: 2
-                cluster_size: 1
-                reduction_supported: true
-                multiple_buffering: 1
-                min_utilization: 0
-                allow_overbooking: false
-                meshX: 56
-                meshY: 2
-                technology: "45nm"
-                global_cycle_seconds: 1e-9
-                power_gated_at: null
-            required_actions:
-              - read
-              - leak
-              - write
-              - update
-            enabled: true
-          - name: inter_PE_Cluster_spatial[1..112]
-            class: dummy_storage
-            attributes:
-                width: 1
-                depth: 1
-                datawidth: 1
-                technology: -1
-                has_power_gating: false
-                n_banks: 2
-                cluster_size: 1
-                reduction_supported: true
-                multiple_buffering: 1
-                min_utilization: 0
-                allow_overbooking: false
-                meshX: 56
-                meshY: 2
-                global_cycle_seconds: 1e-9
-                power_gated_at: null
-            enabled: true
-          - name: iact_spad[1..1792]
+          - name: iact_spad[1..256]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -137,18 +92,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 224
+                meshX: 32
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - read
-              - leak
               - write
               - update
+              - leak
+              - read
             enabled: true
-          - name: weight_spad[1..1792]
+          - name: weight_spad[1..256]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -165,18 +120,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 224
+                meshX: 32
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - read
-              - leak
               - write
               - update
+              - leak
+              - read
             enabled: true
-          - name: psum_spad[1..1792]
+          - name: psum_spad[1..256]
             class: storage
             subclass: SRAM
             attributes:
@@ -191,18 +146,18 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 224
+                meshX: 32
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - read
-              - leak
               - write
               - update
+              - leak
+              - read
             enabled: true
-          - name: reg[1..1792]
+          - name: reg[1..256]
             class: storage
             subclass: SRAM_MD
             attributes:
@@ -218,24 +173,24 @@ architecture:
                 multiple_buffering: 1
                 min_utilization: 0
                 allow_overbooking: false
-                meshX: 224
+                meshX: 32
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
                 power_gated_at: null
             required_actions:
-              - read
-              - leak
               - write
               - update
+              - leak
+              - read
             enabled: true
-          - name: MAC[1..1792]
+          - name: MAC[1..256]
             class: compute
             subclass: Fmac
             attributes:
                 datawidth: 8
                 has_power_gating: false
-                meshX: 224
+                meshX: 32
                 meshY: 8
                 technology: "45nm"
                 global_cycle_seconds: 1e-9
@@ -689,22 +644,6 @@ mapping:
     type: bypass
     target: inter_ClusterArray_spatial
   - type: spatial
-    permutation: GNSR
-    target: inter_glb_spatial
-  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
-    permutation: RSEFCMNG
-    type: temporal
-    target: inter_glb_spatial
-  - bypass:
-      - Weights
-      - Inputs
-      - Outputs
-    type: bypass
-    target: inter_glb_spatial
-  - type: temporal
-    permutation: GNSR
-    target: glb
-  - type: spatial
     target: inter_PE_Cluster_spatial
     factors: C=4,M=4,E=1,F=1,R=1,S=1,N=1,G=1
     permutation: MCRSEFGN
@@ -763,6 +702,113 @@ mapping:
     keep:
       - Inputs
     type: bypass
+sparse_optimizations:
+    targets:
+      - target: DRAM
+        representation_format:
+            data_spaces:
+              - name: Inputs
+                ranks:
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    flattened_rankIDs:
+                      -   - S
+                          - F
+                    payload_word_bits: 0
+                  - format: UOP
+                    flattened_rankIDs:
+                      -   - E
+                          - N
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 4
+                    flattened_rankIDs:
+                      -   - R
+                  - format: RLE
+                    metadata_word_bits: 4
+                    flattened_rankIDs:
+                      -   - C
+              - name: Weights
+                ranks:
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 0
+                  - format: UOP
+                    payload_word_bits: 7
+                    flattened_rankIDs:
+                      -   - C
+                          - R
+                  - format: RLE
+                    metadata_word_bits: 4
+                    flattened_rankIDs:
+                      -   - M
+        name: DRAM
+      - target: iact_spad
+        representation_format:
+            data_spaces:
+              - name: Inputs
+                ranks:
+                  - format: UOP
+                    payload_word_bits: 4
+                    flattened_rankIDs:
+                      -   - R
+                  - format: RLE
+                    metadata_word_bits: 4
+                    flattened_rankIDs:
+                      -   - C
+        name: iact_spad
+      - target: weight_spad
+        action_optimization:
+          - type: skipping
+            options:
+              - target: Weights
+                condition_on:
+                  - Inputs
+        representation_format:
+            data_spaces:
+              - name: Weights
+                ranks:
+                  - format: UOP
+                    payload_word_bits: 7
+                    flattened_rankIDs:
+                      -   - C
+                          - R
+                  - format: RLE
+                    metadata_word_bits: 4
+                    flattened_rankIDs:
+                      -   - M
+        name: weight_spad
+      - target: psum_spad
+        action_optimization:
+          - type: skipping
+            options:
+              - target: Outputs
+                condition_on:
+                  - Inputs
+                  - Weights
+        name: psum_spad
+      - target: reg
+        representation_format:
+            data_spaces:
+              - name: Inputs
+                ranks:
+                  - format: RLE
+                    metadata_word_bits: 4
+        name: reg
+      - target: MAC
+        compute_optimization:
+          - type: skipping
+        name: MAC
 mapper:
     version: '0.4'
     out_prefix: timeloop-mapper

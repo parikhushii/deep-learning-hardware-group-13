@@ -26,10 +26,10 @@ architecture:
             cycle_seconds: 1e-09
             n_instances: 1
         required_actions:
+          - read
           - write
           - update
           - leak
-          - read
         enabled: true
         area_scale: 1.0
         energy_scale: 1.0
@@ -118,10 +118,10 @@ architecture:
             phy_metadata_datawidth: 4
             ag_datawidth: 2.772588722239781
         required_actions:
+          - read
           - write
           - update
           - leak
-          - read
         enabled: true
         area_scale: 1.0
         energy_scale: 1.0
@@ -158,10 +158,10 @@ architecture:
             phy_metadata_datawidth: 8
             ag_datawidth: 5.2574953720277815
         required_actions:
+          - read
           - write
           - update
           - leak
-          - read
         enabled: true
         area_scale: 1.0
         energy_scale: 1.0
@@ -191,10 +191,10 @@ architecture:
             cycle_seconds: 1e-09
             n_instances: 1
         required_actions:
+          - read
           - write
           - update
           - leak
-          - read
         enabled: true
         area_scale: 1.0
         energy_scale: 1.0
@@ -230,10 +230,10 @@ architecture:
             phy_metadata_datawidth: 4
             ag_datawidth: 0.0
         required_actions:
+          - read
           - write
           - update
           - leak
-          - read
         enabled: true
         area_scale: 1.0
         energy_scale: 1.0

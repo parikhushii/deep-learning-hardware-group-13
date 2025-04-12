@@ -1,7 +1,7 @@
 architecture:
     version: '0.4'
     local:
-      - name: System_top_level.iact_spad[1..1792]
+      - name: System_top_level.iact_spad[1..256]
         class: SRAM_MD
         attributes:
             data_storage_depth: 16
@@ -17,7 +17,7 @@ architecture:
             multiple_buffering: 1
             min_utilization: 0
             allow_overbooking: false
-            meshX: 224
+            meshX: 32
             meshY: 8
             technology: "45nm"
             global_cycle_seconds: 1e-09
@@ -206,7 +206,7 @@ architecture:
                     technology: "45nm"
                     n_instances: 1
                 energy_scale: 1.0
-      - name: System_top_level.weight_spad[1..1792]
+      - name: System_top_level.weight_spad[1..256]
         class: SRAM_MD
         attributes:
             data_storage_depth: 192
@@ -222,7 +222,7 @@ architecture:
             multiple_buffering: 1
             min_utilization: 0
             allow_overbooking: false
-            meshX: 224
+            meshX: 32
             meshY: 8
             technology: "45nm"
             global_cycle_seconds: 1e-09
@@ -411,7 +411,7 @@ architecture:
                     technology: "45nm"
                     n_instances: 1
                 energy_scale: 1.0
-      - name: System_top_level.reg[1..1792]
+      - name: System_top_level.reg[1..256]
         class: SRAM_MD
         attributes:
             data_storage_depth: 1
@@ -426,7 +426,7 @@ architecture:
             multiple_buffering: 1
             min_utilization: 0
             allow_overbooking: false
-            meshX: 224
+            meshX: 32
             meshY: 8
             technology: "45nm"
             global_cycle_seconds: 1e-09
@@ -615,12 +615,12 @@ architecture:
                     technology: "45nm"
                     n_instances: 1
                 energy_scale: 1.0
-      - name: System_top_level.MAC[1..1792]
+      - name: System_top_level.MAC[1..256]
         class: Fmac
         attributes:
             datawidth: 8
             has_power_gating: false
-            meshX: 224
+            meshX: 32
             meshY: 8
             technology: "45nm"
             global_cycle_seconds: 1e-09
@@ -727,7 +727,11 @@ architecture:
       - name: System_top_level.DRAM[1..1]
         class: DRAM
         actions:
-          - name: read
+          - name: write
+            arguments:
+                global_cycle_seconds: 1e-09
+                action_latency_cycles: 1
+          - name: update
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
@@ -735,31 +739,19 @@ architecture:
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-          - name: write
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-          - name: update
+          - name: read
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
       - name: System_top_level.inter_ClusterArray_spatial[1..1]
         class: dummy_storage
         actions: []
-      - name: System_top_level.inter_glb_spatial[1..16]
+      - name: System_top_level.inter_PE_Cluster_spatial[1..16]
         class: dummy_storage
         actions: []
-      - name: System_top_level.glb[1..112]
+      - name: System_top_level.psum_spad[1..256]
         class: SRAM
         actions:
-          - name: read
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-          - name: leak
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
           - name: write
             arguments:
                 global_cycle_seconds: 1e-09
@@ -768,25 +760,11 @@ architecture:
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-      - name: System_top_level.inter_PE_Cluster_spatial[1..112]
-        class: dummy_storage
-        actions: []
-      - name: System_top_level.psum_spad[1..1792]
-        class: SRAM
-        actions:
-          - name: read
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
           - name: leak
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
-          - name: write
-            arguments:
-                global_cycle_seconds: 1e-09
-                action_latency_cycles: 1
-          - name: update
+          - name: read
             arguments:
                 global_cycle_seconds: 1e-09
                 action_latency_cycles: 1
