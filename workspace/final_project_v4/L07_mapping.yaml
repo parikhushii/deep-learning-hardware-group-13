@@ -26,6 +26,26 @@ mapping:
   permutation: [M, C, R, S, E, F, G, N]
   split: 1
 
+#  GLB Cluster
+- target: GLB_Cluster
+  factors: 
+  - M=1
+  - E=1 
+  - F=1 
+  - R=1 
+  - S=1 
+  - N=1 
+  - G=1 
+  - C=1
+  permutation: [M, C, R, S, E, F, G, N]
+  type: temporal
+
+- target: GLB_Cluster
+  bypass: [Weights]
+  keep: [Inputs, Outputs]
+  type: dataspace
+
+# PE Cluser
 - target: PE_Cluster
   type: spatial  # spatial constraint specification
   factors: 
@@ -54,7 +74,6 @@ mapping:
   permutation: [M, C, R, S, E, F, G, N]
   type: temporal
 
-  
 - target: iact_spad
   bypass: [Weights, Outputs]
   keep: [Inputs]

@@ -12,6 +12,8 @@ sparse_optimizations:
               payload_word_bits:  0
             - format: UOP             # M1
               payload_word_bits:  0
+            - format: UOP             # C2
+              payload_word_bits:  0
             - format: UOP             
               flattened_rankIDs: [ [ S, F ] ]
               payload_word_bits:  0
@@ -32,9 +34,9 @@ sparse_optimizations:
             - format: UOP            # M
               payload_word_bits:  0
             - format: UOP            # S  
-              payload_word_bits:  0            
-            - format: UOP            # C 
-              payload_word_bits:  0            
+              payload_word_bits:  0      
+            - format: UOP            # M
+              payload_word_bits:  0         
             - format: UOP
               payload_word_bits:  7
               flattened_rankIDs: [ [ C, R ] ] 
@@ -43,43 +45,24 @@ sparse_optimizations:
               flattened_rankIDs: [ [ M  ] ]
           # rank_application_order: inner-to-outer
 
-  # - target: glb
-  #   representation_format:
-  #     data_spaces:
-  #       - name: Inputs
-  #         ranks: 
-  #           - format: UOP             
-  #             payload_word_bits:  0
-  #           - format: UOP             
-  #             payload_word_bits:  0
-  #           - format: UOP             
-  #             payload_word_bits:  0
-  #           - format: UOP             
-  #             payload_word_bits:  0
-  #           - format: UOP             
-  #             payload_word_bits:  0
-  #           - format: UOP             
-  #             payload_word_bits:  4
-  #             flattened_rankIDs: [ [ R ] ]
-  #           - format: RLE
-  #             metadata_word_bits: 4
-  #             flattened_rankIDs: [ [ C ] ]
-  #       - name: Weights
-  #         ranks:
-  #           - format: UOP            # G
-  #             payload_word_bits:  0
-  #           - format: UOP            # M
-  #             payload_word_bits:  0
-  #           - format: UOP            # S  
-  #             payload_word_bits:  0            
-  #           - format: UOP            # C 
-  #             payload_word_bits:  0            
-  #           - format: UOP
-  #             payload_word_bits:  4
-  #             flattened_rankIDs: [ [ C, R ] ] 
-  #           - format: RLE
-  #             metadata_word_bits: 4
-  #             flattened_rankIDs: [ [ M  ] ]
+  - target: glb
+    representation_format:
+      data_spaces:
+        - name: Inputs
+          ranks:
+            - format: UOP             # C1
+              payload_word_bits:  0
+            - format: RLE             
+              metadata_word_bits: 4
+              flattened_rankIDs: [ [ C ] ] 
+        - name: Weights
+          ranks:          
+            - format: UOP
+              payload_word_bits:  4
+              flattened_rankIDs: [ [ C, R ] ] 
+            - format: RLE
+              metadata_word_bits: 4
+              flattened_rankIDs: [ [ M  ] ]
 
   - target: iact_spad
     representation_format:
