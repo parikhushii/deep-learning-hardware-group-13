@@ -8,6 +8,13 @@ problem:
     N: 1
     R: 1
     S: 1
+    densities: 
+        Weights: 
+            distribution: "fixed_structured"
+            density: {{density_weights}}
+        Inputs: 
+            distribution: "fixed_structured"
+            density: {{density_inputs}}
   shape:
     coefficients:
     - default: 1
