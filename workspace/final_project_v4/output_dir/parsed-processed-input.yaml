@@ -251,76 +251,43 @@ architecture_constraints:
     targets: []
 problem:
     instance:
-        C: 64
-        E: 32
-        F: 32
-        G: 1
-        M: 64
-        N: 1
-        R: 1
-        S: 1
+        M: 4096
+        K: 4096
+        N: 4096
         densities:
             Weights:
                 distribution: "fixed_structured"
-                density: 1.0
+                density: 1
                 band_width: 0
                 workload_tensor_size: 0
             Inputs:
                 distribution: "fixed_structured"
-                density: 1.0
+                density: 1
                 band_width: 0
                 workload_tensor_size: 0
     shape:
-        coefficients:
-          - default: 1
-            name: Wstride
-          - default: 1
-            name: Hstride
-          - default: 1
-            name: Wdilation
-          - default: 1
-            name: Hdilation
         data_spaces:
           - name: Weights
             projection:
-              -   -   - C
-              -   -   - M
-              -   -   - G
-              -   -   - R
-              -   -   - S
+              -   -   - K
+              -   -   - N
             read_write: false
           - name: Inputs
             projection:
-              -   -   - N
-              -   -   - C
-              -   -   - G
-              -   -   - R
-                      - Wdilation
-                  -   - E
-                      - Wstride
-              -   -   - S
-                      - Hdilation
-                  -   - F
-                      - Hstride
+              -   -   - M
+              -   -   - K
             read_write: false
           - name: Outputs
             projection:
-              -   -   - N
-              -   -   - G
               -   -   - M
-              -   -   - F
-              -   -   - E
+              -   -   - N
             read_write: true
         dimensions:
-          - R
-          - S
-          - E
-          - F
-          - C
           - M
           - N
-          - G
+          - K
         name: grouped-CONV
+        coefficients: []
     version: '0.4'
 compound_components:
     version: '0.4'
@@ -684,16 +651,16 @@ compound_components:
                   - name: idle
 mapping:
   - target: DRAM
-    factors: M=2,E=0,F=0,R=1,S=0,N=0,G=0,C=8
-    permutation: REFSCMNG
+    factors: M=4096,N=4096,K=4096
+    permutation: KNM
     type: temporal
   - type: spatial
     target: inter_ClusterArray_spatial
-    factors: C=2,M=8,E=1,F=1,R=1,S=1,N=1,G=1
-    permutation: MCRSEFGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     split: 1
-  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
-    permutation: RSEFCMNG
+  - factors: M=1,N=1,K=1
+    permutation: MNK
     type: temporal
     target: inter_ClusterArray_spatial
   - bypass:
@@ -702,11 +669,8 @@ mapping:
       - Outputs
     type: bypass
     target: inter_ClusterArray_spatial
-  - type: spatial
-    permutation: GNSR
-    target: inter_glb_spatial
-  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
-    permutation: RSEFCMNG
+  - factors: M=1,N=1,K=1
+    permutation: MNK
     type: temporal
     target: inter_glb_spatial
   - bypass:
@@ -715,16 +679,13 @@ mapping:
       - Outputs
     type: bypass
     target: inter_glb_spatial
-  - type: temporal
-    permutation: GNSR
-    target: glb
   - type: spatial
     target: inter_PE_Cluster_spatial
-    factors: C=4,M=4,E=1,F=1,R=1,S=1,N=1,G=1
-    permutation: MCRSEFGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     split: 1
-  - factors: R=1,S=1,E=1,F=1,C=1,M=1,N=1,G=1
-    permutation: RSEFCMNG
+  - factors: M=1,N=1,K=1
+    permutation: MNK
     type: temporal
     target: inter_PE_Cluster_spatial
   - bypass:
@@ -734,8 +695,8 @@ mapping:
     type: bypass
     target: inter_PE_Cluster_spatial
   - target: iact_spad
-    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
-    permutation: MCRSEFGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     type: temporal
   - target: iact_spad
     bypass:
@@ -745,8 +706,8 @@ mapping:
       - Inputs
     type: bypass
   - target: weight_spad
-    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
-    permutation: MCRSEFGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     type: temporal
   - target: weight_spad
     bypass:
@@ -756,8 +717,8 @@ mapping:
       - Weights
     type: bypass
   - target: psum_spad
-    factors: M=1,E=1,F=1,R=0,S=1,N=1,G=1,C=1
-    permutation: MCRSEFGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     type: temporal
   - target: psum_spad
     bypass:
@@ -767,8 +728,8 @@ mapping:
       - Outputs
     type: bypass
   - target: reg
-    factors: M=1,E=1,F=1,R=1,S=1,N=1,G=1,C=1
-    permutation: MCEFRSGN
+    factors: M=1,N=1,K=1
+    permutation: KNM
     type: temporal
   - target: reg
     bypass:
@@ -785,50 +746,25 @@ sparse_optimizations:
               - name: Inputs
                 ranks:
                   - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    flattened_rankIDs:
-                      -   - S
-                          - F
-                    payload_word_bits: 0
-                  - format: UOP
-                    flattened_rankIDs:
-                      -   - E
-                          - N
-                    payload_word_bits: 0
-                  - format: UOP
                     payload_word_bits: 4
                     flattened_rankIDs:
-                      -   - R
+                      -   - M
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - C
+                      -   - K
               - name: Weights
                 ranks:
                   - format: UOP
                     payload_word_bits: 0
                   - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
-                    payload_word_bits: 0
-                  - format: UOP
                     payload_word_bits: 7
                     flattened_rankIDs:
-                      -   - C
-                          - R
+                      -   - K
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - M
+                      -   - N
         name: DRAM
       - target: glb
         representation_format:
@@ -837,21 +773,22 @@ sparse_optimizations:
                 ranks:
                   - format: UOP
                     payload_word_bits: 0
+                    flattened_rankIDs:
+                      -   - M
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - C
+                      -   - K
               - name: Weights
                 ranks:
                   - format: UOP
                     payload_word_bits: 4
                     flattened_rankIDs:
-                      -   - C
-                          - R
+                      -   - K
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - M
+                      -   - N
         name: glb
       - target: iact_spad
         representation_format:
@@ -861,11 +798,11 @@ sparse_optimizations:
                   - format: UOP
                     payload_word_bits: 4
                     flattened_rankIDs:
-                      -   - R
+                      -   - M
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - C
+                      -   - K
         name: iact_spad
       - target: weight_spad
         action_optimization:
@@ -881,12 +818,11 @@ sparse_optimizations:
                   - format: UOP
                     payload_word_bits: 7
                     flattened_rankIDs:
-                      -   - C
-                          - R
+                      -   - K
                   - format: RLE
                     metadata_word_bits: 4
                     flattened_rankIDs:
-                      -   - M
+                      -   - N
         name: weight_spad
       - target: psum_spad
         action_optimization:
